@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/icon_32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/icon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/icon_32.png">
+  <link rel="mask-icon" href="/images/icons/icon_32.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"catnip-5.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="img{     padding: 0px 40px 0px 40px;     max-width: 860px; }   整机：top 命令格式：top [options] 参数选项：1234567891011[options]：   -b 批处理   -c 显示完整的启动命令   -I 忽略失效过程   -s 保密模式   -S 累积模式   -H 线程模式   -i&lt;时间&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux_系统：系统监控">
+<meta property="og:url" content="https://catnip-5.github.io/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/index.html">
+<meta property="og:site_name" content="Catnip">
+<meta property="og:description" content="img{     padding: 0px 40px 0px 40px;     max-width: 860px; }   整机：top 命令格式：top [options] 参数选项：1234567891011[options]：   -b 批处理   -c 显示完整的启动命令   -I 忽略失效过程   -s 保密模式   -S 累积模式   -H 线程模式   -i&lt;时间&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://catnip-5.github.io/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/top.png">
+<meta property="og:image" content="https://catnip-5.github.io/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/vmstat.png">
+<meta property="og:image" content="https://catnip-5.github.io/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/iostat.png">
+<meta property="article:published_time" content="2019-07-30T06:27:54.000Z">
+<meta property="article:modified_time" content="2024-03-17T04:56:09.000Z">
+<meta property="article:author" content="Catnip">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://catnip-5.github.io/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/top.png">
+
+<link rel="canonical" href="https://catnip-5.github.io/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Linux_系统：系统监控 | Catnip</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Catnip" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Catnip</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">100</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<div id="hitokoto" style="text-align: center;padding: 5px 0px 20px 0px;">&nbsp;</div>
+
+
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(function (res){
+      return res.json();
+    })
+    .then(function (data) {
+      var hitokoto = document.getElementById('hitokoto');
+      hitokoto.innerText = "" + data.hitokoto + "  来自于 " + data.from;
+    })
+    .catch(function (err) {
+      console.error(err);
+    });
+</script>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://catnip-5.github.io/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Catnip">
+      <meta itemprop="description" content="度过大难, 将有大成, 继续努力, 终成大器.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Catnip">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux_系统：系统监控
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-30 14:27:54" itemprop="dateCreated datePublished" datetime="2019-07-30T14:27:54+08:00">2019-07-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-17 12:56:09" itemprop="dateModified" datetime="2024-03-17T12:56:09+08:00">2024-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <style>
+img{
+    padding: 0px 40px 0px 40px;
+    max-width: 860px;
+}
+</style>
+
+<h2 id="整机：top"><a href="#整机：top" class="headerlink" title="整机：top"></a>整机：top</h2><ul>
+<li>命令格式：<code>top [options]</code></li>
+<li>参数选项：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[options]</span>：</span><br><span class="line">   -<span class="selector-tag">b</span> 批处理</span><br><span class="line">   -c 显示完整的启动命令</span><br><span class="line">   -<span class="selector-tag">I</span> 忽略失效过程</span><br><span class="line">   -s 保密模式</span><br><span class="line">   -S 累积模式</span><br><span class="line">   -H 线程模式</span><br><span class="line">   -<span class="selector-tag">i</span>&lt;时间&gt; 设置间隔时间</span><br><span class="line">   -u&lt;用户名&gt; 指定用户名</span><br><span class="line">   -<span class="selector-tag">p</span>&lt;进程号&gt; 指定进程</span><br><span class="line">   -n&lt;次数&gt; 循环显示的次数</span><br></pre></td></tr></table></figure></li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li>top界面操作：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">c 显示完整的命令名</span><br><span class="line">d 修改刷新时间</span><br><span class="line">h 显示帮助画面，给出一些简短的命令总结说明</span><br><span class="line">k 指定要杀死的进程</span><br><span class="line">u 显示指定用户相关进程</span><br><span class="line"><span class="selector-tag">P</span> 按CPU使用排序</span><br><span class="line">M 按内存使用排序</span><br><span class="line">F 排序（进入新的界面，并选择排序的目标字段）</span><br><span class="line">R 顺序或逆序</span><br><span class="line">H 显示线程</span><br><span class="line">Z 以多色彩显示<span class="attribute">top</span></span><br><span class="line">l/t/m 显示toggle/load/cpu/内存信息</span><br><span class="line"><span class="number">1</span> 显示多CPU的信息（多核机器上查看每个CPU的使用率）</span><br><span class="line">W 保存当前<span class="attribute">top</span>的配置</span><br></pre></td></tr></table></figure></li>
+<li>uptime：系统负载均衡，<code>(0.00+0.01+0.05)/3 &gt; 0.7</code>，大于0.7系统就会有点卡</li>
+</ul>
+<img src="/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/top.png" class="" title="top">
+
+<h2 id="CPU：vmstat"><a href="#CPU：vmstat" class="headerlink" title="CPU：vmstat"></a>CPU：vmstat</h2><ul>
+<li>命令格式：<code>vmstat [options] [delay [count]]</code></li>
+<li>参数选项：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[options]</span>：</span><br><span class="line">   -<span class="selector-tag">a</span> 显示活跃和非活跃内存</span><br><span class="line">   -f 显示启动后创建的进程总数</span><br><span class="line">   -m 显示slabinfo，slabinfo信息记录在/proc/slabinfo文件中</span><br><span class="line">   -n 头信息仅显示一次</span><br><span class="line">   -s 显示内存相关的统计信息</span><br><span class="line">   -d 显示相关磁盘的统计信息    </span><br><span class="line">   -<span class="selector-tag">p</span> 显示磁盘子分区的统计信息</span><br><span class="line">   -S 输出信息的单位</span><br><span class="line"><span class="selector-attr">[delay]</span>：信息收集间隔</span><br><span class="line"><span class="selector-attr">[count]</span>：信息收集次数</span><br></pre></td></tr></table></figure></li>
+</ul>
+<img src="/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/vmstat.png" class="" title="vmstat">
+
+
+<h2 id="内存：free"><a href="#内存：free" class="headerlink" title="内存：free"></a>内存：free</h2><ul>
+<li>命令格式：<code>free [options]</code></li>
+<li>参数选项：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[options]</span>：</span><br><span class="line">   -<span class="selector-tag">b</span> 以Byte为单位显示内存使用情况</span><br><span class="line">   -k 以KB为单位显示内存使用情况 </span><br><span class="line">   -m 以MB为单位显示内存使用情况</span><br><span class="line">   -g 以GB为单位显示内存使用情况</span><br><span class="line">   -o 不显示缓冲区调节列</span><br><span class="line">   -s&lt;间隔秒数&gt; 持续观察内存使用状况</span><br><span class="line">   -t 显示内存总和列</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="硬盘：df"><a href="#硬盘：df" class="headerlink" title="硬盘：df"></a>硬盘：df</h2><ul>
+<li>命令格式：<code>df [options] [file]</code></li>
+<li>参数选项：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[options]</span>：</span><br><span class="line">   -<span class="selector-tag">a</span> 全部文件系统列表</span><br><span class="line">   -h 方便阅读方式显示</span><br><span class="line">   -H 等于“-h”，但是计算式<span class="number">1</span>K=<span class="number">1000</span>，而不是<span class="number">1</span>K=<span class="number">1024</span></span><br><span class="line">   -<span class="selector-tag">i</span> 显示inode信息</span><br><span class="line">   -k 区块为<span class="number">1024</span>字节</span><br><span class="line">   -l 只显示本地文件系统</span><br><span class="line">   -m 区块为<span class="number">1048576</span>字节</span><br><span class="line">   –no-sync 忽略 sync 命令</span><br><span class="line">   -<span class="selector-tag">P</span> 输出格式为POSIX</span><br><span class="line">   –sync 在取得磁盘信息前，先执行sync命令</span><br><span class="line">   -T 文件系统类型</span><br><span class="line">   –<span class="attribute">block-size</span>=&lt;区块大小&gt; 指定区块大小</span><br><span class="line">   -t&lt;文件系统类型&gt; 只显示选定文件系统的磁盘信息</span><br><span class="line">   -x&lt;文件系统类型&gt; 不显示选定文件系统的磁盘信息</span><br><span class="line"><span class="selector-attr">[file]</span>：指定文件系统上的文件</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="磁盘IO：iostat"><a href="#磁盘IO：iostat" class="headerlink" title="磁盘IO：iostat"></a>磁盘IO：iostat</h2><ul>
+<li>命令格式：<code>iostat [options] [delay [count]]</code></li>
+<li>参数选项：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[options]</span>：</span><br><span class="line">   -c 显示CPU使用情况</span><br><span class="line">   -d 显示磁盘使用情况</span><br><span class="line">   -k 以K为单位显示</span><br><span class="line">   -m 以M为单位显示</span><br><span class="line">   -N 显示磁盘阵列(LVM) 信息</span><br><span class="line">   -n 显示NFS使用情况</span><br><span class="line">   -<span class="selector-tag">p</span> 可以报告出每块磁盘的每个分区的使用情况</span><br><span class="line">   -t 显示终端和CPU的信息</span><br><span class="line">   -x 显示详细信息</span><br><span class="line"><span class="selector-attr">[delay]</span>：时间间隔</span><br><span class="line"><span class="selector-attr">[count]</span>：显示次数</span><br></pre></td></tr></table></figure></li>
+</ul>
+<img src="/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%B3%BB%E7%BB%9F%E7%9B%91%E6%8E%A7/iostat.png" class="" title="iostat">
+
+<h2 id="网络IO：ifstat"><a href="#网络IO：ifstat" class="headerlink" title="网络IO：ifstat"></a>网络IO：ifstat</h2><ul>
+<li>命令格式：<code>ifstat [options]</code></li>
+<li>参数选项：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[options]</span>：</span><br><span class="line">   -<span class="selector-tag">a</span> 忽略历史文件</span><br><span class="line">   -d, <span class="attr">--scan</span>=SECS 每秒SECS的样本统计数据</span><br><span class="line">   -e 显示错误</span><br><span class="line">   -j json格式的输出</span><br><span class="line">   -n, <span class="attr">--nooutput</span> 不显示任何输出。仅更新历史记录文件</span><br><span class="line">   -<span class="selector-tag">p</span>, <span class="attr">--pretty</span> 如果与<span class="attr">--json</span>结合使用，则打印输出</span><br><span class="line">   -r 重置历史记录</span><br><span class="line">   -s, <span class="attr">--noupdate</span> 不要更新历史记录文件</span><br><span class="line">   -t, <span class="attr">--interval</span>=SECS 在过去的SECS秒内报告平均值</span><br><span class="line">   -z, <span class="attr">--zeros</span> 显示活动为零的条目</span><br><span class="line">   -x, <span class="attr">--extended</span>=TYPE 显示TYPE的扩展统计数据</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.man7.org/linux/man-pages/dir_all_alphabetic.html">Linux 命令详解</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 后端</a>
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/JVM/OOM%E5%B8%B8%E8%A7%81%E5%BC%82%E5%B8%B8/" rel="prev" title="OOM常见异常">
+      <i class="fa fa-chevron-left"></i> OOM常见异常
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Linux/Linux_%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%80%A7%E8%83%BD%E4%B8%8E%E5%B7%A5%E5%85%B7/" rel="next" title="Linux_系统：性能与工具">
+      Linux_系统：性能与工具 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%9C%BA%EF%BC%9Atop"><span class="nav-number">1.</span> <span class="nav-text">整机：top</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU%EF%BC%9Avmstat"><span class="nav-number">2.</span> <span class="nav-text">CPU：vmstat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%EF%BC%9Afree"><span class="nav-number">3.</span> <span class="nav-text">内存：free</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E7%9B%98%EF%BC%9Adf"><span class="nav-number">4.</span> <span class="nav-text">硬盘：df</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E7%9B%98IO%EF%BC%9Aiostat"><span class="nav-number">5.</span> <span class="nav-text">磁盘IO：iostat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9CIO%EF%BC%9Aifstat"><span class="nav-number">6.</span> <span class="nav-text">网络IO：ifstat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Catnip"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Catnip</p>
+  <div class="site-description" itemprop="description">度过大难, 将有大成, 继续努力, 终成大器.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+    <div class="feed-link motion-element" style="opacity: 1; display: block; transform: translateX(0px);">
+        <a target="_blank"  href="/atom.xml" rel="alternate">
+          <i class="fa fa-rss""></i>
+          RSS
+        </a>
+    </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/catnip-5" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;catnip-5" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=1007331304&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;1007331304&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+  
+	<script type="text/javascript" src="/js/cursor/fireworks.js"></script>
+  
+
+</body>
+</html>

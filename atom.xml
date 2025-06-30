@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Catnip</title>
+  
+  
+  <link href="https://catnip-5.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://catnip-5.github.io/"/>
+  <updated>2025-06-24T08:26:44.446Z</updated>
+  <id>https://catnip-5.github.io/</id>
+  
+  <author>
+    <name>Catnip</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MCP</title>
+    <link href="https://catnip-5.github.io/AI/MCP/"/>
+    <id>https://catnip-5.github.io/AI/MCP/</id>
+    <published>2025-06-20T02:53:11.000Z</published>
+    <updated>2025-06-24T08:26:44.446Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;MCP&quot;&gt;&lt;a href=&quot;#MCP&quot; class=&quot;headerlink&quot; title=&quot;MCP&quot;&gt;&lt;/a&gt;MCP&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;MCP 是一种用于将通用 Tools 模块化、外部化的协议方案&lt;/code&gt;。将AI应用中常用的 Tools 从各个应用中提取出来，构建为一个&lt;code&gt;可独立部署、可分布式扩展的外部工具服务&lt;/code&gt;，从而降低AI应用中工具开发的重复工作，解决信息孤岛问题。&lt;/li&gt;
+&lt;li&gt;通过 MCP 协议，外部的工具服务以 JSON 数据格式，向各类 AI应用声明其可用 Tools，应用仅需基于 MCP 提供的接口信息，使用传统的 Tools 参数结构，即可与基础大模型对话式调用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MCP 仅作用于应用层，大模型层依然是传统 Tools 方式。&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&quot;/AI/MCP/MCP.png&quot; class=&quot;&quot; title=&quot;MCP&quot;&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="https://catnip-5.github.io/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://catnip-5.github.io/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微调</title>
+    <link href="https://catnip-5.github.io/AI/%E5%BE%AE%E8%B0%83/"/>
+    <id>https://catnip-5.github.io/AI/%E5%BE%AE%E8%B0%83/</id>
+    <published>2025-06-20T01:54:11.000Z</published>
+    <updated>2025-06-21T08:39:45.041Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;微调步骤&quot;&gt;&lt;a href=&quot;#微调步骤&quot; class=&quot;headerlink&quot; title=&quot;微调步骤&quot;&gt;&lt;/a&gt;微调步骤&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;安装LLaMA Factory&lt;/code&gt; -&amp;gt; &lt;code&gt;下载模型&lt;/code&gt; -&amp;gt; &lt;code&gt;准备数据集&lt;/code&gt; -&amp;gt; &lt;code&gt;微调&lt;/code&gt; -&amp;gt; &lt;code&gt;导出Ollama&lt;/code&gt; -&amp;gt; &lt;code&gt;SpringAI接入&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="https://catnip-5.github.io/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://catnip-5.github.io/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LangChain4j</title>
+    <link href="https://catnip-5.github.io/AI/LangChain4j/"/>
+    <id>https://catnip-5.github.io/AI/LangChain4j/</id>
+    <published>2025-06-11T01:32:11.000Z</published>
+    <updated>2025-06-25T06:11:12.120Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;会话模型&quot;&gt;&lt;a href=&quot;#会话模型&quot; class=&quot;headerlink&quot; title=&quot;会话模型&quot;&gt;&lt;/a&gt;会话模型&lt;/h2&gt;&lt;h3 id=&quot;简单对话&quot;&gt;&lt;a href=&quot;#简单对话&quot; class=&quot;headerlink&quot; title=&quot;简单对话&quot;&gt;&lt;/a&gt;简单对话&lt;/h3&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependencies&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;dev.langchain4j&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;langchain4j-community-dashscope-spring-boot-starter&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependencies&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependencyManagement&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependencies&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;dev.langchain4j&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;langchain4j-community-bom&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;1.0.0-beta1&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;type&lt;/span&gt;&amp;gt;&lt;/span&gt;pom&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;type&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;scope&lt;/span&gt;&amp;gt;&lt;/span&gt;import&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;scope&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependency&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependencies&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;dependencyManagement&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="https://catnip-5.github.io/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://catnip-5.github.io/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringAI</title>
+    <link href="https://catnip-5.github.io/AI/SpringAI/"/>
+    <id>https://catnip-5.github.io/AI/SpringAI/</id>
+    <published>2025-06-05T09:14:50.000Z</published>
+    <updated>2025-06-13T02:07:11.006Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;SpringAI-主要功能&quot;&gt;&lt;a href=&quot;#SpringAI-主要功能&quot; class=&quot;headerlink&quot; title=&quot;SpringAI 主要功能&quot;&gt;&lt;/a&gt;SpringAI 主要功能&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;对主流 AI 大模型供应商提供了支持，比如：OpenAI、DeepSeek、Microsoft、Ollama、Amazon、Google HuggingFace等。&lt;/li&gt;
+&lt;li&gt;支持AI大模型类型包括：聊天、文本到图像、文本到声音等。&lt;/li&gt;
+&lt;li&gt;支持主流的Embedding Models（嵌入模型）和向量数据库，比如：Azure Vector Search、Chroma、Milvus、Neo4j、Redis、PineCone、PostgreSQL&amp;#x2F;PGVector 等。&lt;/li&gt;
+&lt;li&gt;把 AI 大模型输出映射到简单的 Java 对象（POJOs）上。&lt;/li&gt;
+&lt;li&gt;支持了函数调用（Function calling）功能。&lt;/li&gt;
+&lt;li&gt;为数据工程提供 ETL（数据抽取、转换和加载）框架。&lt;/li&gt;
+&lt;li&gt;支持 Spring Boot 自动配置和快速启动，便于运行 AI 模型和管理向量库。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="https://catnip-5.github.io/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://catnip-5.github.io/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大模型应用</title>
+    <link href="https://catnip-5.github.io/AI/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/"/>
+    <id>https://catnip-5.github.io/AI/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/</id>
+    <published>2025-06-04T02:38:11.000Z</published>
+    <updated>2025-06-25T09:11:36.449Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;大模型介绍&quot;&gt;&lt;a href=&quot;#大模型介绍&quot; class=&quot;headerlink&quot; title=&quot;大模型介绍&quot;&gt;&lt;/a&gt;大模型介绍&lt;/h2&gt;&lt;h3 id=&quot;AI的发展&quot;&gt;&lt;a href=&quot;#AI的发展&quot; class=&quot;headerlink&quot; title=&quot;AI的发展&quot;&gt;&lt;/a&gt;AI的发展&lt;/h3&gt;&lt;img src=&quot;/AI/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/AI%E7%9A%84%E5%8F%91%E5%B1%95.png&quot; class=&quot;&quot; title=&quot;AI的发展&quot;&gt;</summary>
+    
+    
+    
+    <category term="AI" scheme="https://catnip-5.github.io/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://catnip-5.github.io/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kafka</title>
+    <link href="https://catnip-5.github.io/Kafka/Kafka/"/>
+    <id>https://catnip-5.github.io/Kafka/Kafka/</id>
+    <published>2025-05-16T06:30:11.000Z</published>
+    <updated>2025-06-05T08:38:15.213Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;应用场景&quot;&gt;&lt;a href=&quot;#应用场景&quot; class=&quot;headerlink&quot; title=&quot;应用场景&quot;&gt;&lt;/a&gt;应用场景&lt;/h2&gt;&lt;h3 id=&quot;异步&quot;&gt;&lt;a href=&quot;#异步&quot; class=&quot;headerlink&quot; title=&quot;异步&quot;&gt;&lt;/a&gt;异步&lt;/h3&gt;&lt;img src=&quot;/Kafka/Kafka/%E5%BC%82%E6%AD%A5.png&quot; class=&quot;&quot; title=&quot;异步&quot;&gt;</summary>
+    
+    
+    
+    <category term="Kafka" scheme="https://catnip-5.github.io/categories/Kafka/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="消息队列" scheme="https://catnip-5.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+    <category term="Kafka" scheme="https://catnip-5.github.io/tags/Kafka/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RocketMQ</title>
+    <link href="https://catnip-5.github.io/RocketMQ/RocketMQ/"/>
+    <id>https://catnip-5.github.io/RocketMQ/RocketMQ/</id>
+    <published>2025-05-16T06:30:11.000Z</published>
+    <updated>2025-05-16T07:01:18.046Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="RocketMQ" scheme="https://catnip-5.github.io/categories/RocketMQ/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="消息队列" scheme="https://catnip-5.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+    <category term="RocketMQ" scheme="https://catnip-5.github.io/tags/RocketMQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RabbitMQ</title>
+    <link href="https://catnip-5.github.io/RabbitMQ/RabbitMQ/"/>
+    <id>https://catnip-5.github.io/RabbitMQ/RabbitMQ/</id>
+    <published>2025-05-16T06:30:11.000Z</published>
+    <updated>2025-05-16T06:32:44.632Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="RabbitMQ" scheme="https://catnip-5.github.io/categories/RabbitMQ/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="消息队列" scheme="https://catnip-5.github.io/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+    <category term="RabbitMQ" scheme="https://catnip-5.github.io/tags/RabbitMQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Gradle</title>
+    <link href="https://catnip-5.github.io/Gradle/Gradle/"/>
+    <id>https://catnip-5.github.io/Gradle/Gradle/</id>
+    <published>2025-05-14T02:34:50.000Z</published>
+    <updated>2025-05-16T06:32:35.985Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;Gradle-配置环境&quot;&gt;&lt;a href=&quot;#Gradle-配置环境&quot; class=&quot;headerlink&quot; title=&quot;Gradle 配置环境&quot;&gt;&lt;/a&gt;Gradle 配置环境&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;GRADLE_HOME=D:&#92;app&#92;gradle&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;GRADLE_USER_HOME=D:&#92;app&#92;gradle&#92;repository&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Path=%GRADLE_HOME%&#92;bin;....&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="Gradle" scheme="https://catnip-5.github.io/categories/Gradle/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Gradle" scheme="https://catnip-5.github.io/tags/Gradle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx</title>
+    <link href="https://catnip-5.github.io/Nginx/Nginx/"/>
+    <id>https://catnip-5.github.io/Nginx/Nginx/</id>
+    <published>2025-05-08T02:37:14.000Z</published>
+    <updated>2025-05-09T07:17:02.037Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;基本命令&quot;&gt;&lt;a href=&quot;#基本命令&quot; class=&quot;headerlink&quot; title=&quot;基本命令&quot;&gt;&lt;/a&gt;基本命令&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 启动&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;nginx       &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 快速停止     &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;nginx -s stop   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 优雅关闭，在退出前完成已经接受的连接请求 &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;nginx -s quit    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 重新加载配置&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;nginx -s reload   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 测试配置文件              &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;nginx -t            &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 指定配置文件            &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;nginx -c /path/to/nginx.conf    &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="Nginx" scheme="https://catnip-5.github.io/categories/Nginx/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Nginx" scheme="https://catnip-5.github.io/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes</title>
+    <link href="https://catnip-5.github.io/Kubernetes/Kubernetes/"/>
+    <id>https://catnip-5.github.io/Kubernetes/Kubernetes/</id>
+    <published>2025-04-27T06:43:30.000Z</published>
+    <updated>2025-05-08T02:29:51.275Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;K8S-介绍&quot;&gt;&lt;a href=&quot;#K8S-介绍&quot; class=&quot;headerlink&quot; title=&quot;K8S 介绍&quot;&gt;&lt;/a&gt;K8S 介绍&lt;/h2&gt;&lt;h3 id=&quot;K8S-概述&quot;&gt;&lt;a href=&quot;#K8S-概述&quot; class=&quot;headerlink&quot; title=&quot;K8S 概述&quot;&gt;&lt;/a&gt;K8S 概述&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;K8S 是谷歌在2014年开业的容器化集群管理系统。&lt;/li&gt;
+&lt;li&gt;使用 K8S 进行容器化应用部署。&lt;/li&gt;
+&lt;li&gt;使用 K8S 利于应用扩展。&lt;/li&gt;
+&lt;li&gt;K8S 目标实施让部署容器化应用更加简洁和高效。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://catnip-5.github.io/categories/Kubernetes/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Kubernetes" scheme="https://catnip-5.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDK24：新特性</title>
+    <link href="https://catnip-5.github.io/JDK/JDK24%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://catnip-5.github.io/JDK/JDK24%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <published>2025-04-25T02:44:58.000Z</published>
+    <updated>2025-04-27T06:28:56.930Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;正式特性&quot;&gt;&lt;a href=&quot;#正式特性&quot; class=&quot;headerlink&quot; title=&quot;正式特性&quot;&gt;&lt;/a&gt;正式特性&lt;/h2&gt;&lt;h3 id=&quot;增强-Stream-API&quot;&gt;&lt;a href=&quot;#增强-Stream-API&quot; class=&quot;headerlink&quot; title=&quot;增强 Stream API&quot;&gt;&lt;/a&gt;增强 Stream API&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;新增 &lt;code&gt;gather&lt;/code&gt;方法，把原始流切片成若干个 List。&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; Stream.of(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .gather(Gatherers.windowFixed(&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;))	&lt;span class=&quot;comment&quot;&gt;// 按 每两项一组 的方式输出[[1,2][3,4]]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .map(window -&amp;gt; window.stream().mapToInt(Integer::intValue).sum())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .toList();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;System.out.println(result); &lt;span class=&quot;comment&quot;&gt;// [3, 7]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/categories/JDK/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDK23：新特性</title>
+    <link href="https://catnip-5.github.io/JDK/JDK23%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://catnip-5.github.io/JDK/JDK23%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <published>2025-04-25T02:36:58.000Z</published>
+    <updated>2025-04-27T06:28:56.927Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;正式特性&quot;&gt;&lt;a href=&quot;#正式特性&quot; class=&quot;headerlink&quot; title=&quot;正式特性&quot;&gt;&lt;/a&gt;正式特性&lt;/h2&gt;&lt;h3 id=&quot;Markdown文档注释&quot;&gt;&lt;a href=&quot;#Markdown文档注释&quot; class=&quot;headerlink&quot; title=&quot;Markdown文档注释&quot;&gt;&lt;/a&gt;Markdown文档注释&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;支持在 &lt;code&gt;JavaDoc&lt;/code&gt; 中使用 &lt;code&gt;Markdown&lt;/code&gt; 格式，支持 &lt;code&gt;Markdown&lt;/code&gt; 列表、表格、代码块等，替代 &lt;code&gt;HTML&lt;/code&gt; 和 &lt;code&gt;@tag&lt;/code&gt;，简化文档编写&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * # Example Class&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * This class demonstrates Markdown in JavaDoc.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; *&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * - Item 1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * - Item 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; *&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * ```java&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * System.out.println(&amp;quot;Hello&amp;quot;);&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt; * ``&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;*/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;Example&lt;/span&gt; &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/categories/JDK/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDK22：新特性</title>
+    <link href="https://catnip-5.github.io/JDK/JDK22%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://catnip-5.github.io/JDK/JDK22%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <published>2025-04-25T01:44:03.000Z</published>
+    <updated>2025-04-27T06:31:53.677Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;正式特性&quot;&gt;&lt;a href=&quot;#正式特性&quot; class=&quot;headerlink&quot; title=&quot;正式特性&quot;&gt;&lt;/a&gt;正式特性&lt;/h2&gt;&lt;h3 id=&quot;Foreign-Function-Memory-API（外部函数和内存）&quot;&gt;&lt;a href=&quot;#Foreign-Function-Memory-API（外部函数和内存）&quot; class=&quot;headerlink&quot; title=&quot;Foreign Function &amp;amp; Memory API（外部函数和内存）&quot;&gt;&lt;/a&gt;Foreign Function &amp;amp; Memory API（外部函数和内存）&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;提供高效的本地函数调用和堆外内存管理，替代 JNI。&lt;/li&gt;
+&lt;li&gt;新增支持任意字符集、C 函数描述符动态构建、&lt;code&gt;Enable-Native-Access&lt;/code&gt; JAR 清单属性。&lt;/li&gt;
+&lt;li&gt;支持向本地函数传递堆内存段。&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.lang.foreign.*;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.lang.invoke.MethodHandle;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;arena&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; Arena.ofConfined()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; arena.allocateUtf8String(&lt;span class=&quot;string&quot;&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;strlen&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; Linker.nativeLinker().downcallHandle(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        SymbolLookup.loaderLookup().find(&lt;span class=&quot;string&quot;&gt;&amp;quot;strlen&amp;quot;&lt;/span&gt;).orElseThrow(),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        FunctionDescriptor.of(ValueLayout.JAVA_LONG, ValueLayout.ADDRESS));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;len&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;long&lt;/span&gt;) strlen.invoke(str);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    System.out.println(len); &lt;span class=&quot;comment&quot;&gt;// 5&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/categories/JDK/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDK21：新特性</title>
+    <link href="https://catnip-5.github.io/JDK/JDK21%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://catnip-5.github.io/JDK/JDK21%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <published>2025-04-24T09:51:55.000Z</published>
+    <updated>2025-04-27T06:24:45.429Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;正式特性&quot;&gt;&lt;a href=&quot;#正式特性&quot; class=&quot;headerlink&quot; title=&quot;正式特性&quot;&gt;&lt;/a&gt;正式特性&lt;/h2&gt;&lt;h3 id=&quot;虚拟线程&quot;&gt;&lt;a href=&quot;#虚拟线程&quot; class=&quot;headerlink&quot; title=&quot;虚拟线程&quot;&gt;&lt;/a&gt;虚拟线程&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;轻量级线程，由 JVM 管理，运行在少量平台线程上，支持百万级并发。&lt;/li&gt;
+&lt;li&gt;阻塞操作（如 I&amp;#x2F;O）不占用平台线程，简化高并发编程。&lt;/li&gt;
+&lt;li&gt;兼容现有 &lt;code&gt;Thread&lt;/code&gt; API 和 &lt;code&gt;ExecutorService&lt;/code&gt;。&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;executor&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; Executors.newVirtualThreadPerTaskExecutor()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    executor.submit(() -&amp;gt; System.out.println(&lt;span class=&quot;string&quot;&gt;&amp;quot;Task 1: &amp;quot;&lt;/span&gt; + Thread.currentThread()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    executor.submit(() -&amp;gt; System.out.println(&lt;span class=&quot;string&quot;&gt;&amp;quot;Task 2: &amp;quot;&lt;/span&gt; + Thread.currentThread()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/categories/JDK/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDK20：新特性</title>
+    <link href="https://catnip-5.github.io/JDK/JDK20%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://catnip-5.github.io/JDK/JDK20%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <published>2025-04-24T09:27:46.000Z</published>
+    <updated>2025-04-27T06:21:25.588Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;预览特性&quot;&gt;&lt;a href=&quot;#预览特性&quot; class=&quot;headerlink&quot; title=&quot;预览特性&quot;&gt;&lt;/a&gt;预览特性&lt;/h2&gt;&lt;h3 id=&quot;虚拟线程-2&quot;&gt;&lt;a href=&quot;#虚拟线程-2&quot; class=&quot;headerlink&quot; title=&quot;虚拟线程 [2]&quot;&gt;&lt;/a&gt;虚拟线程 [2]&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;轻量级线程，由 JVM 管理，运行在少量平台线程上，支持百万级并发。&lt;/li&gt;
+&lt;li&gt;阻塞操作（如 I&amp;#x2F;O）不占用平台线程，简化高并发编程。&lt;/li&gt;
+&lt;li&gt;兼容现有 &lt;code&gt;Thread&lt;/code&gt; API 和 &lt;code&gt;ExecutorService&lt;/code&gt;。&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;executor&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; Executors.newVirtualThreadPerTaskExecutor()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    executor.submit(() -&amp;gt; System.out.println(&lt;span class=&quot;string&quot;&gt;&amp;quot;Task 1: &amp;quot;&lt;/span&gt; + Thread.currentThread()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    executor.submit(() -&amp;gt; System.out.println(&lt;span class=&quot;string&quot;&gt;&amp;quot;Task 2: &amp;quot;&lt;/span&gt; + Thread.currentThread()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/categories/JDK/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDK19：新特性</title>
+    <link href="https://catnip-5.github.io/JDK/JDK19%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://catnip-5.github.io/JDK/JDK19%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <published>2025-04-24T09:13:35.000Z</published>
+    <updated>2025-04-27T06:21:25.585Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;预览特性&quot;&gt;&lt;a href=&quot;#预览特性&quot; class=&quot;headerlink&quot; title=&quot;预览特性&quot;&gt;&lt;/a&gt;预览特性&lt;/h2&gt;&lt;h3 id=&quot;虚拟线程-1&quot;&gt;&lt;a href=&quot;#虚拟线程-1&quot; class=&quot;headerlink&quot; title=&quot;虚拟线程 [1]&quot;&gt;&lt;/a&gt;虚拟线程 [1]&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;轻量级线程，由 JVM 管理，运行在少量平台线程上，支持百万级并发。&lt;/li&gt;
+&lt;li&gt;阻塞操作（如 I&amp;#x2F;O）不占用平台线程，简化高并发编程。&lt;/li&gt;
+&lt;li&gt;兼容现有 &lt;code&gt;Thread&lt;/code&gt; API 和 &lt;code&gt;ExecutorService&lt;/code&gt;。&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;executor&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; Executors.newVirtualThreadPerTaskExecutor()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    executor.submit(() -&amp;gt; System.out.println(&lt;span class=&quot;string&quot;&gt;&amp;quot;Task 1: &amp;quot;&lt;/span&gt; + Thread.currentThread()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    executor.submit(() -&amp;gt; System.out.println(&lt;span class=&quot;string&quot;&gt;&amp;quot;Task 2: &amp;quot;&lt;/span&gt; + Thread.currentThread()));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/categories/JDK/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDK18：新特性</title>
+    <link href="https://catnip-5.github.io/JDK/JDK18%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://catnip-5.github.io/JDK/JDK18%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <published>2025-04-24T03:56:23.000Z</published>
+    <updated>2025-04-27T06:21:25.582Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;正式特性&quot;&gt;&lt;a href=&quot;#正式特性&quot; class=&quot;headerlink&quot; title=&quot;正式特性&quot;&gt;&lt;/a&gt;正式特性&lt;/h2&gt;&lt;h3 id=&quot;UTF-8-作为默认字符集&quot;&gt;&lt;a href=&quot;#UTF-8-作为默认字符集&quot; class=&quot;headerlink&quot; title=&quot;UTF-8 作为默认字符集&quot;&gt;&lt;/a&gt;UTF-8 作为默认字符集&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;将 UTF-8 设置为标准 Java API 的默认字符集，确保跨平台一致性，API（如 &lt;code&gt;String&lt;/code&gt;、&lt;code&gt;File&lt;/code&gt;）行为统一&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// JDK 18 之前，字符集依赖环境&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;String&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;byte&lt;/span&gt;[]&amp;#123;(&lt;span class=&quot;type&quot;&gt;byte&lt;/span&gt;)&lt;span class=&quot;number&quot;&gt;0xE2&lt;/span&gt;, (&lt;span class=&quot;type&quot;&gt;byte&lt;/span&gt;)&lt;span class=&quot;number&quot;&gt;0x82&lt;/span&gt;, (&lt;span class=&quot;type&quot;&gt;byte&lt;/span&gt;)&lt;span class=&quot;number&quot;&gt;0xAC&lt;/span&gt;&amp;#125;, StandardCharsets.UTF_8); &lt;span class=&quot;comment&quot;&gt;// €&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// JDK 18，默认 UTF-8，无需显式指定&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;String&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;byte&lt;/span&gt;[]&amp;#123;(&lt;span class=&quot;type&quot;&gt;byte&lt;/span&gt;)&lt;span class=&quot;number&quot;&gt;0xE2&lt;/span&gt;, (&lt;span class=&quot;type&quot;&gt;byte&lt;/span&gt;)&lt;span class=&quot;number&quot;&gt;0x82&lt;/span&gt;, (&lt;span class=&quot;type&quot;&gt;byte&lt;/span&gt;)&lt;span class=&quot;number&quot;&gt;0xAC&lt;/span&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/categories/JDK/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDK17：新特性</title>
+    <link href="https://catnip-5.github.io/JDK/JDK17%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://catnip-5.github.io/JDK/JDK17%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <published>2025-04-24T03:39:12.000Z</published>
+    <updated>2025-04-27T06:12:14.105Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;正式特性&quot;&gt;&lt;a href=&quot;#正式特性&quot; class=&quot;headerlink&quot; title=&quot;正式特性&quot;&gt;&lt;/a&gt;正式特性&lt;/h2&gt;&lt;h3 id=&quot;Foreign-Function-Memory-API（外部函数和内存）&quot;&gt;&lt;a href=&quot;#Foreign-Function-Memory-API（外部函数和内存）&quot; class=&quot;headerlink&quot; title=&quot;Foreign Function &amp;amp; Memory API（外部函数和内存）&quot;&gt;&lt;/a&gt;Foreign Function &amp;amp; Memory API（外部函数和内存）&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;合并孵化模块&lt;code&gt;Foreign-Memory Access API&lt;/code&gt; 和 &lt;code&gt;Foreign Linker API&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;提供标准化的堆外内存和本地函数调用接口。&lt;/li&gt;
+&lt;li&gt;安全的堆外内存操作（&lt;code&gt;MemorySegment&lt;/code&gt;, &lt;code&gt;MemoryAddress&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;纯 Java 的本地函数调用，替代 JNI，性能接近 JNI，安全性更高。&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.lang.foreign.*;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.lang.invoke.MethodHandle;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;StrLen&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String[] args)&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;throws&lt;/span&gt; Throwable &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;try&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;Arena&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;arena&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; Arena.ofConfined()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;MemorySegment&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; arena.allocateUtf8String(&lt;span class=&quot;string&quot;&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;MethodHandle&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;strlen&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; Linker.nativeLinker().downcallHandle(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                Linker.nativeLinker().defaultLookup().find(&lt;span class=&quot;string&quot;&gt;&amp;quot;strlen&amp;quot;&lt;/span&gt;).get(),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                FunctionDescriptor.of(ValueLayout.JAVA_LONG, ValueLayout.ADDRESS)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;len&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; (&lt;span class=&quot;type&quot;&gt;long&lt;/span&gt;) strlen.invoke(str);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            System.out.println(len); &lt;span class=&quot;comment&quot;&gt;// 5&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;孵化版本&lt;/strong&gt;：&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;JDK 14&lt;/strong&gt;：引入 &lt;code&gt;Foreign-Memory Access API&lt;/code&gt;，提供 &lt;code&gt;MemorySegment&lt;/code&gt;、&lt;code&gt;MemoryLayout&lt;/code&gt; 等核心功能，支持本地内存操作，替代 &lt;code&gt;Unsafe&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JDK 15&lt;/strong&gt;：优化 API，引入 &lt;code&gt;MemorySession&lt;/code&gt;，增强布局、语义与生命周期控制。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;JDK 16&lt;/strong&gt;：引入 &lt;code&gt;Foreign Linker API&lt;/code&gt;，支持本地函数调用；增强 &lt;code&gt;MemorySession&lt;/code&gt;（支持并发），优化布局和性能，稳定 API 设计。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/categories/JDK/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/tags/JDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDK16：新特性</title>
+    <link href="https://catnip-5.github.io/JDK/JDK16%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>https://catnip-5.github.io/JDK/JDK16%EF%BC%9A%E6%96%B0%E7%89%B9%E6%80%A7/</id>
+    <published>2025-04-24T03:00:02.000Z</published>
+    <updated>2025-04-27T05:49:58.438Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;正式特性&quot;&gt;&lt;a href=&quot;#正式特性&quot; class=&quot;headerlink&quot; title=&quot;正式特性&quot;&gt;&lt;/a&gt;正式特性&lt;/h2&gt;&lt;h3 id=&quot;模式匹配-instanceof&quot;&gt;&lt;a href=&quot;#模式匹配-instanceof&quot; class=&quot;headerlink&quot; title=&quot;模式匹配 instanceof&quot;&gt;&lt;/a&gt;模式匹配 instanceof&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;支持类型模式匹配，自动完成类型转换并绑定变量。&lt;/li&gt;
+&lt;li&gt;语义增强，增强对 &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;、&lt;code&gt;||&lt;/code&gt; 逻辑表达式的支持。&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;quot;Hello&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (obj &lt;span class=&quot;keyword&quot;&gt;instanceof&lt;/span&gt; String s &amp;amp;&amp;amp; s.length() &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    System.out.println(s);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/categories/JDK/"/>
+    
+    
+    <category term="后端" scheme="https://catnip-5.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="JDK" scheme="https://catnip-5.github.io/tags/JDK/"/>
+    
+  </entry>
+  
+</feed>

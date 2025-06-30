@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/icon_32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/icon_32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/icon_32.png">
+  <link rel="mask-icon" href="/images/icons/icon_32.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"catnip-5.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="1. 锁分类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java_并发：锁分类">
+<meta property="og:url" content="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/index.html">
+<meta property="og:site_name" content="Catnip">
+<meta property="og:description" content="1. 锁分类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E9%94%81%E5%88%86%E7%B1%BB.png">
+<meta property="og:image" content="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E8%87%AA%E6%97%8B.jpg">
+<meta property="og:image" content="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/synchronized%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png">
+<meta property="og:image" content="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E5%85%AC%E5%B9%B3%E9%94%81.png">
+<meta property="og:image" content="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81.png">
+<meta property="og:image" content="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81.png">
+<meta property="og:image" content="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E9%9D%9E%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81.png">
+<meta property="og:image" content="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E9%87%8D%E5%85%A5%E9%94%81%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.png">
+<meta property="article:published_time" content="2019-06-16T08:45:30.000Z">
+<meta property="article:modified_time" content="2024-03-17T12:29:08.000Z">
+<meta property="article:author" content="Catnip">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JUC">
+<meta property="article:tag" content="并发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E9%94%81%E5%88%86%E7%B1%BB.png">
+
+<link rel="canonical" href="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java_并发：锁分类 | Catnip</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Catnip" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Catnip</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">100</span></a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+<div id="hitokoto" style="text-align: center;padding: 5px 0px 20px 0px;">&nbsp;</div>
+
+
+<script>
+  fetch('https://v1.hitokoto.cn')
+    .then(function (res){
+      return res.json();
+    })
+    .then(function (data) {
+      var hitokoto = document.getElementById('hitokoto');
+      hitokoto.innerText = "" + data.hitokoto + "  来自于 " + data.from;
+    })
+    .catch(function (err) {
+      console.error(err);
+    });
+</script>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://catnip-5.github.io/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Catnip">
+      <meta itemprop="description" content="度过大难, 将有大成, 继续努力, 终成大器.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Catnip">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java_并发：锁分类
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-16 16:45:30" itemprop="dateCreated datePublished" datetime="2019-06-16T16:45:30+08:00">2019-06-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-17 20:29:08" itemprop="dateModified" datetime="2024-03-17T20:29:08+08:00">2024-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-锁分类"><a href="#1-锁分类" class="headerlink" title="1. 锁分类"></a>1. 锁分类</h2><img src="/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E9%94%81%E5%88%86%E7%B1%BB.png" class="" title="锁分类">
+
+<span id="more"></span>
+
+<h2 id="2-悲观锁-VS-乐观锁"><a href="#2-悲观锁-VS-乐观锁" class="headerlink" title="2. 悲观锁 VS 乐观锁"></a>2. 悲观锁 VS 乐观锁</h2><h3 id="2-1-概述"><a href="#2-1-概述" class="headerlink" title="2.1. 概述"></a>2.1. 概述</h3><ul>
+<li>对于同一个数据的并发操作，<code>悲观锁</code>认为自己在使用数据的时候一定有别的线程来修改数据，因此在获取数据的时候<code>会先加锁</code>，确保数据不会被别的线程修改。Java中，<code>synchronized</code>关键字和<code>Lock</code>的实现类都是<code>悲观锁</code>。</li>
+<li>而<code>乐观锁</code>认为自己在使用数据时不会有别的线程修改数据，所以<code>不会添加锁</code>，只是在更新数据的时候去判断之前有没有别的线程更新了这个数据。如果这个数据没有被更新，当前线程将自己修改的数据成功写入。如果数据已经被其他线程更新，则根据不同的实现方式执行不同的操作（例如报错或者自动重试）。</li>
+</ul>
+
+
+<h3 id="2-2-使用场景"><a href="#2-2-使用场景" class="headerlink" title="2.2. 使用场景"></a>2.2. 使用场景</h3><ul>
+<li><code>悲观锁</code>适合<code>写操作</code>多的场景，先加锁可以保证写操作时数据正确。</li>
+<li><code>乐观锁</code>适合<code>读操作</code>多的场景，不加锁的特点能够使其读操作的性能大幅提升。</li>
+</ul>
+<h3 id="2-3-使用示例"><a href="#2-3-使用示例" class="headerlink" title="2.3. 使用示例"></a>2.3. 使用示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ------------------------- 悲观锁的调用方式 -------------------------</span></span><br><span class="line"><span class="comment">// synchronized</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">testMethod</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="comment">// 操作同步资源</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ReentrantLock</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">ReentrantLock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>(); <span class="comment">// 需要保证多个线程使用的是同一个锁</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">modifyPublicResources</span><span class="params">()</span> &#123;</span><br><span class="line">	lock.lock();</span><br><span class="line">	<span class="comment">// 操作同步资源</span></span><br><span class="line">	lock.unlock();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ------------------------- 乐观锁的调用方式 -------------------------</span></span><br><span class="line"><span class="comment">// CAS全称 Compare And Swap（比较与交换），是一种无锁算法。</span></span><br><span class="line"><span class="comment">// 在不使用锁（没有线程被阻塞）的情况下实现多线程之间的变量同步。</span></span><br><span class="line"><span class="comment">// java.util.concurrent包中的原子类就是通过CAS来实现了乐观锁。</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">AtomicInteger</span> <span class="variable">atomicInteger</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AtomicInteger</span>();  <span class="comment">// 需要保证多个线程使用的是同一个AtomicInteger</span></span><br><span class="line">atomicInteger.incrementAndGet(); <span class="comment">//执行自增1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-自旋锁-VS-适应性自旋锁"><a href="#3-自旋锁-VS-适应性自旋锁" class="headerlink" title="3. 自旋锁 VS 适应性自旋锁"></a>3. 自旋锁 VS 适应性自旋锁</h2><h3 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1. 概述"></a>3.1. 概述</h3><ul>
+<li><p><code>自旋锁概念：</code>阻塞或唤醒一个Java线程需要操作系统切换CPU状态来完成，这种状态转换需要<code>耗费处理器时间</code>。如果同步代码块中的内容过于简单，状态转换消耗的时间有可能比用户代码执行的时间还要长。</p>
+<p>在许多场景中，同步资源的锁定时间很短，为了这<code>一小段时间去切换线程，线程挂起和恢复现场的花费可能会让系统得不偿失</code>。如果物理机器有多个处理器，能够让两个或以上的线程同时并行执行，我们就可以让后面那个请求锁的线程不放弃CPU的执行时间，看看持有锁的线程是否很快就会释放锁。</p>
+<p>而为了<code>让当前线程“稍等一下”</code>，我们需让当前线程进行<code>自旋</code>，如果在自旋完成后前面锁定同步资源的线程已经释放了锁，那么当前线程就可以<code>不必阻塞</code>而是<code>直接获取同步资源</code>，从而<code>避免切换线程的开销</code>。这就是自旋锁。</p>
+</li>
+</ul>
+
+
+<h3 id="3-2-自旋锁缺点"><a href="#3-2-自旋锁缺点" class="headerlink" title="3.2. 自旋锁缺点"></a>3.2. 自旋锁缺点</h3><ul>
+<li>自旋锁本身是有缺点的，它<code>不能代替阻塞</code>。自旋等待<code>虽然避免了线程切换的开销，但它要占用处理器时间</code>。如果锁被占用的时间很短，自旋等待的效果就会非常好。反之，如果锁被占用的时间很长，那么自旋的线程只会白浪费处理器资源。所以，自旋等待的时间必须要有一定的限度，如果自旋超过了限定次数（默认是10次，可以使用-XX:PreBlockSpin来更改）没有成功获得锁，就应当挂起线程。</li>
+</ul>
+<h3 id="3-3-自旋锁实现原理"><a href="#3-3-自旋锁实现原理" class="headerlink" title="3.3. 自旋锁实现原理"></a>3.3. 自旋锁实现原理</h3><ul>
+<li>自旋锁的实现原理也是<code>CAS</code>，AtomicInteger中调用<code>unsafe</code>进行自增操作的源码中的<code>do-while循环</code>就是一个<code>自旋</code>操作，如果修改数值失败则通过循环来执行<code>自旋</code>，直至修改成功。</li>
+</ul>
+<img src="/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E8%87%AA%E6%97%8B.jpg" class="" title="自旋">
+
+<h3 id="3-4-适应性自旋锁"><a href="#3-4-适应性自旋锁" class="headerlink" title="3.4. 适应性自旋锁"></a>3.4. 适应性自旋锁</h3><ul>
+<li>自适应意味着<code>自旋的时间（次数）不再固定</code>，而是<code>由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定</code>。如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行中，那么虚拟机就会认为这次自旋也是很有可能再次成功，进而它将允许自旋等待持续相对更长的时间。如果对于某个锁，自旋很少成功获得过，那在以后尝试获取这个锁时将可能省略掉自旋过程，直接阻塞线程，避免浪费处理器资源。</li>
+</ul>
+<h2 id="4-无锁-VS-偏向锁-VS-轻量级锁-VS-重量级锁"><a href="#4-无锁-VS-偏向锁-VS-轻量级锁-VS-重量级锁" class="headerlink" title="4. 无锁 VS 偏向锁 VS 轻量级锁 VS 重量级锁"></a>4. 无锁 VS 偏向锁 VS 轻量级锁 VS 重量级锁</h2><h3 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1. 概述"></a>4.1. 概述</h3><ul>
+<li>这四种锁是指锁的状态，专门针对synchronized的</li>
+<li><code>无锁</code>没有对资源进行锁定，所有的线程都能访问并修改同一个资源，但同时只有一个线程能修改成功。</li>
+<li><code>偏向锁</code>指一段同步代码一直被一个线程所访问，那么该线程会自动获取锁，降低获取锁的代价。</li>
+<li><code>轻量级锁</code>指当锁是偏向锁的时候，被另外的线程所访问，偏向锁就会升级为轻量级锁，其他线程会通过自旋的形式尝试获取锁，不会阻塞，从而提高性能。</li>
+<li><code>重量级锁</code>指当锁是轻量级锁时，另一个线程虽然是自旋，但自旋并不会一直持续，自旋一定次数后，如果还没有获取到锁，则线程会进入阻塞状态，导致锁膨胀为重量级锁。</li>
+</ul>
+<h3 id="4-2-synchronized实现原理"><a href="#4-2-synchronized实现原理" class="headerlink" title="4.2. synchronized实现原理"></a>4.2. synchronized实现原理</h3><img src="/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/synchronized%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png" class="" title="synchronized实现原理">
+
+<h2 id="5-公平锁-VS-非公平锁"><a href="#5-公平锁-VS-非公平锁" class="headerlink" title="5. 公平锁 VS 非公平锁"></a>5. 公平锁 VS 非公平锁</h2><h3 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1. 概述"></a>5.1. 概述</h3><ul>
+<li><code>公平锁</code>指多个线程按锁的申请顺序来获取锁。<ul>
+<li><code>优点</code>等待的线程不会被饿死，按序就能拿到锁。</li>
+<li><code>缺点</code>整体吞吐量和效率很低。</li>
+</ul>
+</li>
+</ul>
+<img src="/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E5%85%AC%E5%B9%B3%E9%94%81.png" class="" title="公平锁">
+
+<ul>
+<li><code>非公平锁</code>指多个线程不按锁的申请顺序来获取锁。<ul>
+<li><code>优点</code>抢占式获取锁，整体吞吐量和效率都很高。</li>
+<li><code>缺点</code>可能有些线程会一直获取不到锁，处于等待状态，直至饿死。</li>
+</ul>
+</li>
+</ul>
+<img src="/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81.png" class="" title="非公平锁">
+
+<h3 id="5-2-源码分析"><a href="#5-2-源码分析" class="headerlink" title="5.2. 源码分析"></a>5.2. 源码分析</h3><ul>
+<li>通过<code>ReentrantLock</code>源码得知，公平锁与非公平锁的<code>lock()</code>方法唯一的区别就在于公平锁在获取同步状态时多了一个限制条件。<code>hasQueuedPredecessors()</code>方法主要是判断当前线程是否位于同步队列中的第一个。如果是则返回true，否则返回false。</li>
+</ul>
+
+
+
+<h2 id="6-可重入锁-VS-非可重入锁"><a href="#6-可重入锁-VS-非可重入锁" class="headerlink" title="6. 可重入锁 VS 非可重入锁"></a>6. 可重入锁 VS 非可重入锁</h2><h3 id="6-1-概述"><a href="#6-1-概述" class="headerlink" title="6.1. 概述"></a>6.1. 概述</h3><ul>
+<li><code>可重入锁</code>也叫<code>递归锁</code>，一定程度上能<code>避免死锁</code>。同个线程可递归获取同一个锁，锁计数+1。待层层解锁后，锁计数为0，则锁被释放。</li>
+</ul>
+<img src="/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81.png" class="" title="可重入锁">
+
+<ul>
+<li><code>不可重入锁</code>指同一个线程获取锁后，必须执行完释放了该锁，才能重新获取新的锁来调用该同步代码段。</li>
+</ul>
+<img src="/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E9%9D%9E%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81.png" class="" title="非可重入锁">
+
+<h3 id="6-2-源码分析"><a href="#6-2-源码分析" class="headerlink" title="6.2. 源码分析"></a>6.2. 源码分析</h3><img src="/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9A%E9%94%81%E5%88%86%E7%B1%BB/%E9%87%8D%E5%85%A5%E9%94%81%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.png" class="" title="重入锁源码分析">
+
+<h2 id="7-独享锁-VS-共享锁"><a href="#7-独享锁-VS-共享锁" class="headerlink" title="7. 独享锁 VS 共享锁"></a>7. 独享锁 VS 共享锁</h2><h3 id="7-1-概述"><a href="#7-1-概述" class="headerlink" title="7.1. 概述"></a>7.1. 概述</h3><ul>
+<li><code>独享锁也叫排他锁，是指该锁一次只能被一个线程所持有</code>。如果线程T对数据A加上排它锁后，则其他线程不能再对A加任何类型的锁。<code>获得排它锁的线程即能读数据又能修改数据</code>。JDK中的<code>synchronized</code>和JUC中<code>Lock</code>的实现类就是<code>互斥锁</code>。</li>
+<li><code>共享锁是指该锁可被多个线程所持有</code>。如果线程T对数据A加上共享锁后，则其他线程只能对A再加共享锁，不能加排它锁。<code>获得共享锁的线程只能读数据，不能修改数据</code>。</li>
+</ul>
+<h3 id="7-2-源码分析"><a href="#7-2-源码分析" class="headerlink" title="7.2. 源码分析"></a>7.2. 源码分析</h3><ul>
+<li>在<code>ReentrantReadWriteLock</code>里面，<code>读锁和写锁的锁主体都是Sync</code>，但读锁和写锁的加锁方式不一样。读锁是共享锁，写锁是独享锁。<code>读锁的共享锁可保证并发读非常高效，而读写、写读、写写的过程互斥，因为读锁和写锁是分离的</code>。所以ReentrantReadWriteLock的并发性相比一般的互斥锁有了很大提升。</li>
+</ul>
+
+
+<h2 id="8-参考来源"><a href="#8-参考来源" class="headerlink" title="8. 参考来源"></a>8. 参考来源</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://tech.meituan.com/2018/11/15/java-lock.html">不可不说的Java“锁”事</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 后端</a>
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/JUC/" rel="tag"><i class="fa fa-tag"></i> JUC</a>
+              <a href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag"><i class="fa fa-tag"></i> 并发</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Java/Java_%E5%9F%BA%E7%A1%80%EF%BC%9A%E4%BA%8C%E8%BF%9B%E5%88%B6/" rel="prev" title="Java_基础：二进制">
+      <i class="fa fa-chevron-left"></i> Java_基础：二进制
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Java/Java_%E5%B9%B6%E5%8F%91%EF%BC%9ACountDownLatch%E8%AE%A1%E6%95%B0%E5%99%A8/" rel="next" title="Java_并发：CountDownLatch计数器">
+      Java_并发：CountDownLatch计数器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%94%81%E5%88%86%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">1. 锁分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%82%B2%E8%A7%82%E9%94%81-VS-%E4%B9%90%E8%A7%82%E9%94%81"><span class="nav-number">2.</span> <span class="nav-text">2. 悲观锁 VS 乐观锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. 使用示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%87%AA%E6%97%8B%E9%94%81-VS-%E9%80%82%E5%BA%94%E6%80%A7%E8%87%AA%E6%97%8B%E9%94%81"><span class="nav-number">3.</span> <span class="nav-text">3. 自旋锁 VS 适应性自旋锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E6%A6%82%E8%BF%B0"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E8%87%AA%E6%97%8B%E9%94%81%E7%BC%BA%E7%82%B9"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 自旋锁缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E8%87%AA%E6%97%8B%E9%94%81%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. 自旋锁实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E9%80%82%E5%BA%94%E6%80%A7%E8%87%AA%E6%97%8B%E9%94%81"><span class="nav-number">3.4.</span> <span class="nav-text">3.4. 适应性自旋锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%97%A0%E9%94%81-VS-%E5%81%8F%E5%90%91%E9%94%81-VS-%E8%BD%BB%E9%87%8F%E7%BA%A7%E9%94%81-VS-%E9%87%8D%E9%87%8F%E7%BA%A7%E9%94%81"><span class="nav-number">4.</span> <span class="nav-text">4. 无锁 VS 偏向锁 VS 轻量级锁 VS 重量级锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E6%A6%82%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-synchronized%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. synchronized实现原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%85%AC%E5%B9%B3%E9%94%81-VS-%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81"><span class="nav-number">5.</span> <span class="nav-text">5. 公平锁 VS 非公平锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E6%A6%82%E8%BF%B0"><span class="nav-number">5.1.</span> <span class="nav-text">5.1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">5.2.</span> <span class="nav-text">5.2. 源码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81-VS-%E9%9D%9E%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81"><span class="nav-number">6.</span> <span class="nav-text">6. 可重入锁 VS 非可重入锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E6%A6%82%E8%BF%B0"><span class="nav-number">6.1.</span> <span class="nav-text">6.1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">6.2.</span> <span class="nav-text">6.2. 源码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E7%8B%AC%E4%BA%AB%E9%94%81-VS-%E5%85%B1%E4%BA%AB%E9%94%81"><span class="nav-number">7.</span> <span class="nav-text">7. 独享锁 VS 共享锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E6%A6%82%E8%BF%B0"><span class="nav-number">7.1.</span> <span class="nav-text">7.1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">7.2.</span> <span class="nav-text">7.2. 源码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E5%8F%82%E8%80%83%E6%9D%A5%E6%BA%90"><span class="nav-number">8.</span> <span class="nav-text">8. 参考来源</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Catnip"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Catnip</p>
+  <div class="site-description" itemprop="description">度过大难, 将有大成, 继续努力, 终成大器.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+    <div class="feed-link motion-element" style="opacity: 1; display: block; transform: translateX(0px);">
+        <a target="_blank"  href="/atom.xml" rel="alternate">
+          <i class="fa fa-rss""></i>
+          RSS
+        </a>
+    </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/catnip-5" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;catnip-5" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=1007331304&site=qq&menu=yes" title="QQ → http:&#x2F;&#x2F;wpa.qq.com&#x2F;msgrd?v&#x3D;3&amp;uin&#x3D;1007331304&amp;site&#x3D;qq&amp;menu&#x3D;yes" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+  
+	<script type="text/javascript" src="/js/cursor/fireworks.js"></script>
+  
+
+</body>
+</html>
